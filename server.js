@@ -45,17 +45,17 @@ function scrape() {
 				.children("h2")
 				.children("a")
 				.attr("href");
-			newArticle.image = $(this)
-				.children("a.c-entry-box--compact__image-wrapper")
-				.children("picture")
-				.children("img")
-				.attr("src");
-			newArticle.byline = $(this)
+			newArticle.author = $(this)
 				.children("div.c-entry-box--compact__body")
 				.children("div.c-byline")
 				.children("span.c-byline__item")
 				.children("a")
 				.text();
+			newArticle.image = $(this)
+				.children("a.c-entry-box--compact__image-wrapper")
+				.children("picture")
+				.children("img")
+				.attr("src");
 		})
 	});
 }
