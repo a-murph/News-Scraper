@@ -29,8 +29,9 @@ mongoose.Promise = Promise;
 //connect to the Mongo DB
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 
-function scrape() {
+function scrape(cb) {
 	request("https://www.polygon.com", function(err, response, body) {
+		var articles = [];
 		var $ = cheerio.load(body);
 		$("div.c-entry-box--compact").each(function(i, element) {
 			var newArticle = {};
@@ -56,12 +57,48 @@ function scrape() {
 				.children("picture")
 				.children("img")
 				.attr("src");
-		})
+			
+			//accounting for different image tags/structure
+			if (!newArticle.image) {
+				// newArticle.image = $(this)
+				// 	.children("a.c-entry-box--compact__image-wrapper")
+				// 	.children("div")
+				// 	.children("img")
+				// 	.attr("src");
+
+				console.log($(this).children("a.c-entry-box--compact__image-wrapper").children("div.c-entry-box--compact__image").children("img.c-dynamic-image").attr("src"));
+				
+			}
+
+			//don't push broken entries, article-styled ads, and partner-site articles
+			if (newArticle.link && newArticle.link.includes("polygon.com")) {
+				articles.push(newArticle);
+			}
+		});
+		
+		//check for duplicates
+		articles.forEach(function(e, i) {
+			articles.forEach(function(f, j) {
+				//if title is the same at a different index...
+				if (i !== j && e.link === f.link ) {
+					//delete one of them
+					articles.splice(j, 1);
+				}
+			});
+		});
+
+		db.Article.insertMany(articles, function(err, data) {
+			cb(data);
+		});
 	});
 }
 
 app.get("/", function(req, res) {
-	scrape();
+	db.Article.deleteMany({}, function() {
+		scrape(function(data) {
+			res.json(data);
+		});
+	});
 });
 
 app.listen(PORT, function() {
