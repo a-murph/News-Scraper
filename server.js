@@ -1,4 +1,4 @@
-//NPM imports
+//npm imports
 var express = require("express");
 var mongoose = require("mongoose");
 var cheerio = require("cheerio");
@@ -11,6 +11,7 @@ var db = require("./models");
 
 //initialize express
 var app = express();
+app.use(express.static("public"));
 
 //if deployed, use deployed port, otherwise use 3000
 var PORT = process.env.PORT || 3000;
