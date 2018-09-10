@@ -120,7 +120,7 @@ function scrape(cb) {
 app.get("/", function(req, res) {
 	scrape(function() {
 		db.Article.find({}, function(err, data) {
-			res.json(data);
+			res.render("index", { articles: data });
 		});
 	});
 });
