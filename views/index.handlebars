@@ -1,10 +1,14 @@
 <div class="articles-container">
 	{{#each articles}}
 		<div class="article" data-id="{{this._id}}">
-			<img class="article-image" src="{{this.image}}" alt="Article Image">
+			{{#if this.image}}
+				<img class="article-image" src="{{this.image}}" alt="Article Image">
+			{{else}}
+				<img class="article-image" src="/assets/images/placeholder.png" alt="Article Image">
+			{{/if}}
 			<a class="article-title" href="{{this.link}}">{{this.title}}</a>
 			<p class="article-byline">By {{this.author}}</p>
-			<a href="./{{this.id}}/comments" data-id="{{this._id}}">Comments</button>
+			<a href="./{{this.id}}/comments" data-id="{{this._id}}">Comments</button></a>
 		</div>
 	{{/each}}
 </div>
