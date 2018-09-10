@@ -75,7 +75,7 @@ function scrape(cb) {
 
 			//accounting for articles with no listed author
 			if (!newArticle.author) {
-				newArticle.author = "Polygon"
+				newArticle.author = "Polygon Staff"
 			}
 
 			//don't push broken entries, article-styled ads, and partner-site articles
@@ -134,9 +134,39 @@ app.get("/", function(req, res) {
 
 //comments page routing
 app.get("/:id/comments", function(req, res) {
-	db.Article.findOne({ "_id": req.params.id }, function(err, data) {
+	// db.Article.findOne({ "_id": req.params.id }, function(err, data) {
+	// 	res.render("comments", { article: data });
+	// });
+
+	db.Article.findOne({ "_id": req.params.id }).populate("comments").then(function(data) {
 		res.render("comments", { article: data });
 	});
+});
+
+//adding new comments
+app.post("/api/:id/comments", function(req, res) {
+	db.Comment.create(req.body).then(function(data) {
+		return db.Article.findOneAndUpdate(
+			{
+				"_id": req.params.id
+			}, {
+				$push: {"comments": data._id}
+			}, {
+				new: true
+			}
+		);
+	}).then(function(data) {
+		res.json(data);
+	});
+});
+
+//deleting comments
+app.delete("/api/comments/:id", function(req, res) {
+	db.Comment.deleteOne({
+		"_id": req.params.id
+	}).then(function(data) {
+		res.json(data);
+	})
 });
 
 app.listen(PORT, function() {

@@ -18,7 +18,7 @@ var ArticleSchema = new Schema({
 	image: String,
 	comments: [{
 		type: Schema.Types.ObjectId,
-		ref: "comment"
+		ref: "Comment"
 	}]
 });
 
