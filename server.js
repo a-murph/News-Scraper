@@ -60,14 +60,14 @@ function scrape(cb) {
 			
 			//accounting for different image tags/structure
 			if (!newArticle.image) {
-				// newArticle.image = $(this)
-				// 	.children("a.c-entry-box--compact__image-wrapper")
-				// 	.children("div")
-				// 	.children("img")
-				// 	.attr("src");
-
-				console.log($(this).children("a.c-entry-box--compact__image-wrapper").children("div.c-entry-box--compact__image").children("img.c-dynamic-image").attr("src"));
-				
+				//for some reason these images' src attribute was returning base-64 URIs instead of useable URLs; this solution is a little hacky but seems to work consistently
+				var srcText = $(this)
+				.children("a.c-entry-box--compact__image-wrapper")
+				.children("div")
+				.children("noscript")
+				.text();
+				//the noscript tag's text contains the desired URL but with a bunch of html-like text before and after it; this slice extracts only the URL
+				newArticle.image = srcText.slice(17, srcText.length-2);
 			}
 
 			//don't push broken entries, article-styled ads, and partner-site articles
@@ -81,7 +81,7 @@ function scrape(cb) {
 			articles.forEach(function(f, j) {
 				//if title is the same at a different index...
 				if (i !== j && e.link === f.link ) {
-					//delete one of them
+					//delete the duplicate
 					articles.splice(j, 1);
 				}
 			});
@@ -94,10 +94,8 @@ function scrape(cb) {
 }
 
 app.get("/", function(req, res) {
-	db.Article.deleteMany({}, function() {
-		scrape(function(data) {
-			res.json(data);
-		});
+	scrape(function(data) {
+		res.json(data);
 	});
 });
 
