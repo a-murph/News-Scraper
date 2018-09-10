@@ -1,12 +1,10 @@
-<h1>Mongo Polygon Scraper</h1>
-
 <div class="articles-container">
 	{{#each articles}}
 		<div class="article" data-id="{{this._id}}">
 			<img class="article-image" src="{{this.image}}" alt="Article Image">
 			<a class="article-title" href="{{this.link}}">{{this.title}}</a>
 			<p class="article-byline">By {{this.author}}</p>
-			<button data-id="{{this._id}}">Save Article</button>
+			<a href="./{{this.id}}/comments" data-id="{{this._id}}">Comments</button>
 		</div>
 	{{/each}}
 </div>

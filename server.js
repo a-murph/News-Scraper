@@ -29,6 +29,7 @@ mongoose.Promise = Promise;
 //connect to the Mongo DB
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 
+//scraping logic
 function scrape(cb) {
 	request("https://www.polygon.com", function(err, response, body) {
 		//array to hold all new article objects
@@ -70,6 +71,11 @@ function scrape(cb) {
 				.text();
 				//the noscript tag's text contains the desired URL but with a bunch of html-like text before and after it; this slice extracts only the URL
 				newArticle.image = srcText.slice(17, srcText.length-2);
+			}
+
+			//accounting for articles with no listed author
+			if (!newArticle.author) {
+				newArticle.author = "Polygon"
 			}
 
 			//don't push broken entries, article-styled ads, and partner-site articles
@@ -117,11 +123,19 @@ function scrape(cb) {
 	});
 }
 
+//home page routing
 app.get("/", function(req, res) {
 	scrape(function() {
 		db.Article.find({}, function(err, data) {
 			res.render("index", { articles: data });
 		});
+	});
+});
+
+//comments page routing
+app.get("/:id/comments", function(req, res) {
+	db.Article.findOne({ "_id": req.params.id }, function(err, data) {
+		res.render("comments", { article: data });
 	});
 });
 

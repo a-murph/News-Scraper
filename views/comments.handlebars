@@ -1,0 +1,18 @@
+<div class="article" data-id="{{article._id}}">
+	<img class="article-image" src="{{article.image}}" alt="Article Image">
+	<a class="article-title" href="{{article.link}}">{{article.title}}</a>
+	<p class="article-byline">By {{article.author}}</p>
+</div>
+<div class="comments-container">
+	{{#if article.comments}}
+		<p>comments</p>
+		{{#each article.comments}}
+			<div class="comment">
+				<h6 class="comment-author">{{this.author}}</h6>
+				<p class="comment-body">{{this.body}}</p>
+			</div>
+		{{/each}}
+	{{else}}
+		<p class="no-comments">There are no comments on this article.</p>
+	{{/if}}
+</div>
