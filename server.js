@@ -126,9 +126,21 @@ function scrape(cb) {
 //home page routing
 app.get("/", function(req, res) {
 	scrape(function() {
-		db.Article.find({}, function(err, data) {
+		var query = db.Article.find({}).sort("-_id").limit(25);
+		query.exec(function(err, data) {
+			if (err) throw err;
+			
 			res.render("index", { articles: data });
 		});
+	});
+});
+
+app.get("/archive", function(req, res) {
+	var query = db.Article.find({}).sort("-_id");
+	query.exec(function(err, data) {
+		if (err) throw err;
+			
+		res.render("index", { articles: data });
 	});
 });
 
