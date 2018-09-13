@@ -1,4 +1,11 @@
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+nav {
+	border: 1px solid black;
+}
 .article-image {
-	width: 400px;
-	height: 267px;
+	width: 300px;
+	height: 300px;
 }
