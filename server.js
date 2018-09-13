@@ -117,7 +117,7 @@ function scrape(cb) {
 			db.Article.insertMany(articles, function(err, data) {
 				console.log("database insertion completed.");
 				
-				cb();
+				cb(data);
 			});
 		});
 	});
@@ -125,16 +125,17 @@ function scrape(cb) {
 
 //home page routing
 app.get("/", function(req, res) {
-	scrape(function() {
+	//scrape(function() {
 		var query = db.Article.find({}).sort("-_id").limit(25);
 		query.exec(function(err, data) {
 			if (err) throw err;
 			
 			res.render("index", { articles: data });
 		});
-	});
+	//});
 });
 
+//archive page
 app.get("/archive", function(req, res) {
 	var query = db.Article.find({}).sort("-_id");
 	query.exec(function(err, data) {
@@ -146,10 +147,6 @@ app.get("/archive", function(req, res) {
 
 //comments page routing
 app.get("/:id/comments", function(req, res) {
-	// db.Article.findOne({ "_id": req.params.id }, function(err, data) {
-	// 	res.render("comments", { article: data });
-	// });
-
 	db.Article.findOne({ "_id": req.params.id }).populate("comments").then(function(data) {
 		res.render("comments", { article: data });
 	});
@@ -169,6 +166,13 @@ app.post("/api/:id/comments", function(req, res) {
 		);
 	}).then(function(data) {
 		res.json(data);
+	});
+});
+
+//api page for getting new articles
+app.get("/api/scrape", function(req, res) {
+	scrape(function(newArticles) {
+		res.json(newArticles);
 	});
 });
 
