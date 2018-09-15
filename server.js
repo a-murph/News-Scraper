@@ -126,7 +126,7 @@ function scrape(cb) {
 //home page routing
 app.get("/", function(req, res) {
 	//scrape(function() {
-		var query = db.Article.find({}).sort("-_id").limit(25);
+		var query = db.Article.find({}).sort("-_id").limit(24);
 		query.exec(function(err, data) {
 			if (err) throw err;
 			

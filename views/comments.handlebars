@@ -1,16 +1,26 @@
-<div class="article" data-id="{{article._id}}">
-	<img class="article-image" src="{{article.image}}" alt="Article Image">
-	<a class="article-title" href="{{article.link}}">{{article.title}}</a>
-	<p class="article-byline">By {{article.author}}</p>
+<div class="articles-container">
+	<div class="article article-cp" data-id="{{article._id}}">
+		<img class="article-image article-image-cp" src="{{article.image}}" alt="Article Image">
+		<div class="article-text article-text-cp">
+			<a class="article-title article-title-cp" href="{{article.link}}">{{article.title}}</a>
+			<p class="article-byline article-byline-cp">By {{article.author}}</p>
+		</div>
+	</div>
 </div>
-<div class="form-conatiner">
+<div class="form-container">
 	<h3 class="form-title">Add a Comment</h5>
 	<form class="comment-form">
-		<label for="form-author">Name:</label>
-		<input type="text" name="form-author" id="form-author">
-		<label for="form-body">Comments:</label>
-		<textarea name="form-body" id="form-body" cols="30" rows="10"></textarea>
-		<input type="submit" id="form-submit">
+		<div class="formrow">
+			<label for="form-author">Name:</label>
+			<input type="text" name="form-author" id="form-author">
+		</div>
+		<div class="formrow">
+			<label for="form-body">Comments:</label>
+			<textarea name="form-body" id="form-body" cols="30" rows="10"></textarea>
+		</div>
+		<div class="formrow">
+			<input type="submit" id="form-submit" value="Post Comment">
+		</div>
 	</form>
 </div>
 <div class="comments-container">
@@ -20,7 +30,7 @@
 			<div class="comment">
 				<h4 class="comment-author">{{this.author}}</h6>
 				<p class="comment-body">{{this.body}}</p>
-				<button class="comment-delete" data-id="{{this._id}}">Delete Comment</button>
+				<button class="comment-delete" data-id="{{this._id}}">Delete</button>
 			</div>
 		{{/each}}
 	{{else}}

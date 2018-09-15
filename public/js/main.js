@@ -1,6 +1,7 @@
 $(function() {
 	//scrape new articles
 	$("body").on("click", "#scrape-button", function(event) {
+		//TODO: Disable this on comments page
 		$.ajax({
 			method: "GET",
 			url: "/api/scrape"

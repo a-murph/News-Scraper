@@ -3,24 +3,45 @@
 <head>
 	<title>Polygon Scraper</title>
 	<meta charset="UTF-8">
+	{{!-- Google Fonts --}}
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+	{{!-- Font Awesome --}}
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+	{{!-- Bootstrap --}}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	{{!-- jQuery --}}
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+	{{!-- Custom CSS --}}
 	<link rel="stylesheet" href="/assets/css/reset.css">
 	<link rel="stylesheet" href="/assets/css/main.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	
+	{{!-- Custom JS --}}
 	<script src="/js/main.js"></script>
 </head>
 <body>
-	<div class="container">
+	<div class="page-container">
 		<nav>
-			<a class="home-link" href="/">Polygon Scraper</a>
+			<a class="home-link" href="/"><img src="/assets/images/logo.png" alt="Polygon Scraper"></a>
 			<ul class="nav-links">
 				<li class="nav-item">
-					<button id="scrape-button">Check For New Articles</button>
+					<a id="archive-button" href="/archive">Archives</a>
+				</li>
+				<li class="nav-item">
+					<button id="scrape-button">Get New Articles</button>
 				</li>
 			</ul>
 		</nav>
 		<main class="main-content">
 			{{{ body }}}
 		</main>
+		<footer class="footer">
+			<p>&copy;2018 Andrew Murphy</p>
+			<a href="https://github.com/a-murph/News-Scraper"><span class="fab fa-github"></span>  GitHub Repo</a>
+		</footer>
 	</div>
 </body>
 </html>
