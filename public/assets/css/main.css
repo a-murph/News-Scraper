@@ -21,7 +21,7 @@ body {
 /* navbar */
 nav {
 	height: 60px;
-	background-color: rgba(25, 25, 25, 0.8);
+	background-color: rgba(25, 25, 25, 0.6);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -36,22 +36,25 @@ nav {
 
 /* jumbotron */
 .jumbotron {
-	height: 500px;
+	height: 600px;
 	box-sizing: border-box;
 	padding: 0px;
+	position: relative;
+	top: -100px;
+	z-index: -2;
 }
 .jumbotron-image {
-	height: 500px;
+	height: 600px;
 	width: 100%;
 	object-fit: cover;
 	top: 0px;
 }
 .jumbotron-overlay {
 	width: 100%;
-	height: 500px;
+	height: 600px;
 	background-color: rgba(19, 19, 19, 0.5);
 	position: relative;
-	top: -503px;
+	top: -603px;
 }
 #scrape-button {
 	color: #ededed;
@@ -76,6 +79,7 @@ nav {
 
 /* articles */
 .articles-container {
+	margin-top: -100px;
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
