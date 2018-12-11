@@ -1,12 +1,4 @@
 {{!-- TODO: Add Bootstrap Jumbotron and move scrape button there --}}
-<div class="jumbotron">
-	<img class="jumbotron-image" src="/assets/images/jumbotron.jpg" alt="">
-	<div class="jumbotron-overlay">
-		<header>See the latest from Polygon. It's quick and easy.</header>
-		<button id="scrape-button">Get New Articles</button>
-		<button id="archive-button" onClick="location.href='/archive';">Archives</a>
-	</div>
-</div>
 <div class="articles-container">
 	{{#each articles}}
 		<div class="article" data-id="{{this._id}}">

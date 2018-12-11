@@ -10,86 +10,138 @@ body {
 	font-family: 'Montserrat', sans-serif;
 }
 .page-container {
-	max-width: 1280px;
-	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
 }
 .main-content {
 	/* sticky footer */
-	min-height: calc(100vh - 160px);
+	display: flex; 
+	justify-content: center;
 }
 
 /* navbar */
-nav {
-	height: 60px;
-	background-color: rgba(25, 25, 25, 0.6);
+.navigation {
+	height: 5vw;
+	width: 100%;
+	min-height: 40px;
+	background-color: rgba(25, 25, 25, 0.9);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 20px;
 	position: absolute;
 	top: 0px;
 	z-index: 10;
-	width: 100%;
-	max-width: 1280px;
-	margin: 0 auto;
+}
+
+.home-link{
+	height: 45px;
+	width: 12vw;
+	position: relative;
+	margin-left: 15px;
+	min-width: 140px;
+}
+
+.logo-img{
+	height: auto;
+	width: 12vw;
+	min-width: 140px;
 }
 
 /* jumbotron */
 .jumbotron {
-	height: 600px;
+	height: 90vh;
+	width: 100%;
 	box-sizing: border-box;
 	padding: 0px;
 	position: relative;
-	top: -100px;
+	top: 0px;
+	margin-bottom: 100px;
 }
 .jumbotron-image {
-	height: 600px;
+	height: 100%;
+	width: 100vw;
 	width: 100%;
 	object-fit: cover;
 	top: 0px;
 }
 .jumbotron-overlay {
 	width: 100%;
-	height: 600px;
-	background-color: rgba(19, 19, 19, 0.5);
-	position: relative;
-	top: -603px;
+	height: 100%;
+	background-color: rgba(19, 19, 19, 0.65);
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
+.text-button-container{
+	height: 200px;
+	margin-top: 75px;
+	z-index: 9;
+	display: flex;
+	flex-direction: column;
+}
+
+.button-container{
+	display: flex;
+	margin-top: 25px;
+	width: 100%;
+	justify-content: center;
+}
+
 #scrape-button {
 	color: #ededed;
+	width: 30%;
 	background-color: rgba(25, 25, 25, 0);
-	font-size: 18px;
-	padding: 4px;
+	font-size: 1.2vw;
+	padding: 7px 20px 7px 20px;
 	cursor: pointer;
-	position: absolute;
-	bottom: 80px;
-	left: 33%;
-	width: 15%;
+	margin-right: 10px;
 }
 #archive-button {
 	color: #ededed;
+	width: 30%;
 	background-color: rgba(25, 25, 25, 0);
-	font-size: 18px;
-	padding: 4px;
+	font-size: 1.2vw;
+	padding: 7px 20px 7px 20px;
 	cursor: pointer;
-	position: absolute;
-	bottom: 80px;
-	right: 33%;
-	width: 15%;
+	margin-left: 10px;
 }
-.jumbotron-overlay header {
-	text-align: center;
-	position: absolute;
-	bottom: 150px;
-	margin: 0px 30%;
-	width: 40%;
+.jumbotron-overlay h1 {
 	font-weight: bold;
-	font-size: 2em;
+	font-size: 3.0vw;
+}
+
+.jumbotron-overlay h2 {
+	font-weight: bold;
+	font-size: 3.0vw;
+	margin-top: 10px;
+}
+
+@media screen and (max-width: 850px) {
+
+	.jumbotron-overlay h1 {
+		font-size: 1.5rem;
+	}
+	
+	.jumbotron-overlay h2 {
+		font-size: 1.5rem;
+	}
+
+	#scrape-button{
+		font-size: 12px;
+	}
+	#archive-button{
+		font-size: 12px;
+	}
+
 }
 
 /* articles */
 .articles-container {
-	margin-top: -100px;
+	width: 85%;
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
@@ -98,14 +150,23 @@ nav {
 	text-align: center;
 	width: 30%;
 	margin-bottom: 30px;
-	border: 1px solid rgba(200, 200, 200, 0.1);
+	background-color: rgba(0,0,0, 0.25);
+	border: 1px solid  rgba(0,0,0,0.25);
+	border-radius: 2px;
 }
 
 /* article image and comment button */
 .article-image {
 	width: 100%;
 	height: 220px;
+	object-fit: cover;
 }
+
+.img-shadow{
+	z-index: 5;	
+	box-shadow: inset 0 0 25px #000000;
+}
+
 .comments-button-area {
 	display: flex;
 	flex-direction: row-reverse;
@@ -116,15 +177,17 @@ nav {
 	font-size: 1.7em;
 	position: absolute;
 	display: block;
-	margin-left: -35px;
+	margin-left: -40px;
+	margin-top: 3px;
 	border: #191919;
-	padding: 2px;
+	border-radius: 30%;
+	padding: 4px;
 	background-color: rgba(25, 25, 25, 0.5);
 }
 
 /* article title and byline */
 .article-text {
-	padding: 10px;
+	padding: 10px 20px 20px 20px;
 }
 .article-title {
 	display: block;
@@ -132,13 +195,13 @@ nav {
 a.article-title {
 	color: #ededed;
 	text-decoration: none;
-	font-size: 21px;
+	font-size: 1.3vw;
 	line-height: 1.2em;
 	margin-bottom: 10px;
 }
 .article-byline {
-	font-size: 14px;
-	font-family: 'Georgia', sans-serif;
+	font-size: 1.1vw;
+	opacity: 0.40;
 }
 
 /* footer */
@@ -160,16 +223,34 @@ a.article-title {
 
 /* comments page article */
 .article-cp {
-	width: 80%;
+	width: 50%;
 }
 .article-image-cp {
-	height: unset;
+	width: 100%;
+	height: 400px;
+}
+
+/*COMMENTS PAGE*/
+
+.articles-container-cp{
+	width: 100%;
+}
+
+.comments-page-container{
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+}
+
+.form-and-comments{
+	margin-left: 10%;
+	display: flex;
 }
 
 /* comment form */
 .form-title, .comments-title {
 	font-size: 22px;
-	margin-top: 15px;
+	margin-top: 50px;
 	margin-bottom: 15px;
 }
 .form-container {
@@ -186,6 +267,11 @@ input, textarea {
 	width: 20%;
 	margin-bottom: 10px;
 }
+
+.formrow label{
+	margin-bottom: 10px;
+}
+
 #form-submit {
 	color: #ededed;
 	border: 1px solid #ededed;
@@ -193,26 +279,75 @@ input, textarea {
 	font-size: 18px;
 }
 
+.form-author{
+	color: #ededed;
+	background-color: rgb(19,19,19);
+	border: none;
+	border-radius: 2px;
+	box-sizing: border-box;
+	padding: 10px 5px 10px 5px;
+}
+
+.form-body{
+	color: #ededed;
+	background-color: rgb(19,19,19);
+	border: none;
+	border-radius: 2px;
+	box-sizing: border-box;
+	padding: 10px 5px 10px 5px;
+}
+
 /* comments */
+.comments-container{
+	width: 60%;
+}
 .comment {
-	padding: 18px;
-	border: 1px solid rgba(200, 200, 200, 0.1);
+	width: 90%;
+	box-sizing: border-box;
+	padding: 25px;
+	background-color: rgba(0,0,0, 0.25);
+	border: 1px solid  rgba(0,0,0,0.25);
+	border-radius: 2px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
 }
+
+.comment:last-child {
+	margin-bottom: 100px;
+}
+
 .comment-author {
-	font-size: 17px;
-	margin-left: 18px;
-	margin-bottom: 10px;
+	font-size: 1.2vw;
+	font-weight: bold;
+	position: relative;
+	bottom: 20px;
 }
+
 .comment-body {
-	font-size: 14px;
+	font-size: 1.0vw;
 	line-height: 1.5em;
-	margin-bottom: 5px;
+	overflow-wrap: break-word;
 }
+
 .comment-delete {
 	color: #ededed;
-	border: 1px solid #ededed;
-	background-color: #640000;
+	background-color: rgb(19,19,19);
+	border: none;
 	font-size: 18px;
+	font-weight: bold;
+	align-self: flex-end;
+}
+
+.post-comment{
+	color: #ededed;
+	background-color: rgba(25, 25, 25, 0);
+	font-size: 1.2vw;
+	padding: 7px 20px 7px 20px;
+	cursor: pointer;
+	margin-right: 10px;
+	margin-top: 20px;
+	margin-bottom: 100px;
 }
 
 /* TODO: Media Queries for smaller screens, mobile */

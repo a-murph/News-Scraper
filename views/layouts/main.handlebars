@@ -24,9 +24,22 @@
 </head>
 <body>
 	<div class="page-container">
-		<nav>
-			<a class="home-link" href="/"><img src="/assets/images/logo.png" alt="Polygon Scraper"></a>
+		<nav class="navigation">
+			<a class="home-link" href="/"><img class="logo-img" src="/assets/images/logo.png" alt="Polygon Scraper"></a>
 		</nav>
+	<div class="jumbotron">
+		<img class="jumbotron-image" src="/assets/images/jumbotron.jpg" alt="">
+		<div class="jumbotron-overlay">
+			<div class="text-button-container">
+				<h1>See the latest from Polygon.</h1>
+				<h2>It's quick and easy!</h2>
+				<div class="button-container">
+					<button id="scrape-button">Get New Articles</button>
+					<button id="archive-button" onClick="location.href='/archive';">Archives</a>
+				</div>
+			</div>
+		</div>
+	</div>
 		<main class="main-content">
 			{{{ body }}}
 		</main>
